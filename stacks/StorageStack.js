@@ -5,12 +5,12 @@ export function StorageStack({ stack, app }) {
     const bucket = new Bucket(stack, "Uploads");
 
     // Create DynamoDB table
-    const table = new Table(stack, "LinkInBio", {
+    const table = new Table(stack, "Links", {
         fields: {
             userId: "string",
-            postId: "string",
+            linkId: "string",
         },
-        primaryIndex: { partitionKey: "userId", sortKey: "postId" },
+        primaryIndex: { partitionKey: "userId", sortKey: "linkId" },
     });
 
     return {
