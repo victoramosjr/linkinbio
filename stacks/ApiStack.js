@@ -10,6 +10,9 @@ export function ApiStack({ stack, app}) {
             authorizer: "iam",
             function: {
                 bind: [table],
+                environment: {
+                    STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+                  },
             },
         },
         routes: {
@@ -18,6 +21,7 @@ export function ApiStack({ stack, app}) {
             "GET /links": "packages/functions/src/list.main",
             "PUT /links/{id}": "packages/functions/src/update.main",
             "DELETE /links/{id}": "packages/functions/src/delete.main",
+            "POST /billing": "packages/functions/src/billing.main",
         },
     });
 
